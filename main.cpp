@@ -11,7 +11,7 @@ int main(){
     G.load(F);
     F.close();
 
-    G.printRelations("é");
+    G.printRelations("faz");
     ofstream V; 
     V.open("vecs.dat");
 

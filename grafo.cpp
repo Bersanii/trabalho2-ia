@@ -90,6 +90,7 @@ void graph::writeVecs(ofstream& F){
         for (int s=0; s<this->dim; s++){
             F << this->nd[i]->vec[s] << " ";
         }
+        F << this->nd[i]->word;
         F << endl;
     }
 }

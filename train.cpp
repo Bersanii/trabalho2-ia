@@ -85,14 +85,14 @@ vector<double*> gradBOW(graph& G, ifstream& F){
 }
 
 void trainBOW(graph* G, ifstream& F, double lr, int tmax){
-    vector<double*> grad = gradBOW(*G,F);
     int t = 0;
     while (t<tmax){
+        vector<double*> grad = gradBOW(*G,F);
         for (int i=0; i<G->size(); i++){
             for (int s=0; s<G->dim; s++){
                 G->nd[i]->vec[s] += lr*grad[i][s];
             }
-            cout << costBOW(*G) << endl;
+            // cout << costBOW(*G) << endl;
         }
         t++;
     }

@@ -14,4 +14,4 @@ train.o: train.h
 	g++ -c train.cpp
 
 clear:
-	rm -rf *.o main vecs.dat
+	rm -rf *.o main vecs*.dat

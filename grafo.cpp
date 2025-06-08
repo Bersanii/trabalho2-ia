@@ -49,6 +49,42 @@ void graph::load(ifstream& F){
     }
 }
 
+void graph::load_S_V_T(ifstream& F){
+    /*
+        Carrega base de dados para o grafo com relação S -> V -> T
+    */
+    while (!F.eof()){
+        string S, V, T;
+        getline(F, S, ' ');
+        getline(F, V, ' ');
+        getline(F, T);
+        this->append(S);
+        this->append(V);
+        this->append(T);
+        // Conexão: S é contexto para V, V é contexto para T
+        this->connect(S, V);
+        this->connect(V, T);
+    }
+}
+
+void graph::load_S_V_T_rev(ifstream& F){
+    /*
+        Carrega base de dados para o grafo com relação S <- V <- T
+    */
+    while (!F.eof()){
+        string S, V, T;
+        getline(F, S, ' ');
+        getline(F, V, ' ');
+        getline(F, T);
+        this->append(S);
+        this->append(V);
+        this->append(T);
+        // Conexão: V é contexto para S e para T
+        this->connect(V, S);
+        this->connect(V, T);
+    }
+}
+
 void graph::printNodes(){
     /*
         Imprime lista de nós na tela..
@@ -139,3 +175,4 @@ double* graph::vecAverage(double* p){
     }
     return out;
 }
+

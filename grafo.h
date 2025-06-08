@@ -22,6 +22,8 @@ public:
 
 
     void load(ifstream& F); //Carrega base de dados
+    void load_S_V_T(ifstream& F);     // Para S -> V -> T
+    void load_S_V_T_rev(ifstream& F); // Para S <- V <- T
     void printNodes(); // Imprime nós
     void printRelations(string S);
     void connect(string S, string T); //Conecta duas strings

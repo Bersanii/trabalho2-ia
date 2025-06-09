@@ -22,7 +22,7 @@ public:
     }
 
     bool isIn(string S); //Checa se string S já foi armazenada em algum nó
-    void append(string S); //Adiciona S no final de nd
+    void append(string S, string type); //Adiciona S no final de nd
     int where(string S);
 
 

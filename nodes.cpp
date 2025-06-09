@@ -1,12 +1,13 @@
 #include "nodes.h"
 
-node::node(string word, int dim){
+node::node(string word, int dim, string type){
     /*
         Inicializa nó.
     */
 
     this->dim = dim;
     this->vec = new double[dim];
+    this->type = type;
     for (int s=0; s<dim; s++)
         this->vec[s] = 0.01;
     this->word = word;

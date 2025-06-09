@@ -1,3 +1,4 @@
 *.o 
 main 
 vecs*.dat
+vecs*.png

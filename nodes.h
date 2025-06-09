@@ -9,11 +9,12 @@ using namespace std;
 class node{
 public:
     string word; //palavra armazenada
+    string type;
     int dim; //dimensão do espaço de embarcação
     double* vec; //vetor no espaço de embarcação
     vector<node*> neighbors; //vizinhos
 
-    node(string word, int dim);
+    node(string word, int dim, string type);
     ~node();
 
     //Sobrecarga do operador [] para acessar vizinhos

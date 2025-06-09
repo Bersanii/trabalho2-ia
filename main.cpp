@@ -90,7 +90,7 @@ int main() {
         // Topologia 3: S <- V <- T (S_toV_toT)
 
 
-        run_experiment(dim, Sto_Vto_T, learning_rate, max_iterations);
+        run_experiment(dim, Sto_V_toT, learning_rate, max_iterations);
     }
 
     return 0;

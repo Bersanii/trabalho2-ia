@@ -12,9 +12,9 @@ bool graph::isIn(string S){
     return false;
 }
 
-void graph::append(string S){
+void graph::append(string S, string type = ""){
     if (!this->isIn(S)){
-        node* newNode = new node(S,this->dim);
+        node* newNode = new node(S,this->dim,type);
         this->nd.push_back(newNode);
     }
 }
@@ -41,9 +41,9 @@ void graph::load(ifstream& F){
         getline(F,V,' ');
         string T;
         getline(F,T);
-        this->append(S);
-        this->append(V);
-        this->append(T);
+        this->append(S, "S/T");
+        this->append(V, "V");
+        this->append(T, "S/T");
         this->connect(V,S);
         this->connect(V,T);
     }
@@ -58,9 +58,9 @@ void graph::load_S_V_T(ifstream& F){
         getline(F, S, ' ');
         getline(F, V, ' ');
         getline(F, T);
-        this->append(S);
-        this->append(V);
-        this->append(T);
+        this->append(S, "S/T");
+        this->append(V, "V");
+        this->append(T, "S/T");
         // Conexão: V é contexto para S, T é contexto para V
         this->connect(S, V);
         this->connect(V, T);
@@ -77,9 +77,9 @@ void graph::load_S_V_T_rev(ifstream& F){
         getline(F, S, ' ');
         getline(F, V, ' ');
         getline(F, T);
-        this->append(S);
-        this->append(V);
-        this->append(T);
+        this->append(S, "S/T");
+        this->append(V, "V");
+        this->append(T, "S/T");
         /*
             Temos duas relacoes
             V sendo a resposta, e S sendo o contexto
@@ -105,9 +105,9 @@ void graph::load_Sto_V_toT(ifstream& F){
         getline(F, S, ' ');
         getline(F, V, ' ');
         getline(F, T);
-        this->append(S);
-        this->append(V);
-        this->append(T);
+        this->append(S, "S/T");
+        this->append(V, "V");
+        this->append(T, "S/T");
         /*
             Temos duas relacoes
             S sendo a resposta, e V sendo o contexto
@@ -162,7 +162,7 @@ void graph::writeVecs(ofstream& F){
         for (int s=0; s<this->dim; s++){
             F << this->nd[i]->vec[s] << " ";
         }
-        F << this->nd[i]->word;
+        F << this->nd[i]->word << " " << this->nd[i]->type;
         F << endl;
     }
 }

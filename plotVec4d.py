@@ -1,7 +1,8 @@
 import matplotlib.pyplot as plt
+from adjustText import adjust_text
 
 # Caminho para o novo arquivo com 4 dimensões + rótulo
-filename = "vecs_dim4_S_V_T_seq.dat"
+filename = "vecs_dim4_Sto_V_toT.dat"
 
 # Listas para armazenar dados
 x = []
@@ -16,19 +17,22 @@ with open(filename, 'r') as f:
         parts = line.strip().split()
         if len(parts) == 5:
             xi, yi, ci, si, label = parts
-            x.append(float(xi))
-            y.append(float(yi))
-            colors.append(float(ci))   # Ex: magnitude ou qualquer valor
-            sizes.append(float(si) * 20)  # Ajuste do tamanho dos pontos
+            x.append(float(ci))
+            y.append(float(si))
+            colors.append(float(xi))           # Pode representar magnitude ou outra info
+            sizes.append(float(yi) * 20)       # Escala de tamanho
             labels.append(label)
 
 # Plot
 plt.figure(figsize=(10, 6))
 sc = plt.scatter(x, y, c=colors, s=sizes, cmap='viridis', alpha=0.7)
 
-# Adiciona os rótulos
+# Adiciona os rótulos com ajuste automático
+texts = []
 for i in range(len(labels)):
-    plt.text(x[i], y[i], labels[i], fontsize=8, ha='right', va='bottom')
+    texts.append(plt.text(x[i], y[i], labels[i], fontsize=8))
+
+adjust_text(texts, x=x, y=y, arrowprops=dict(arrowstyle='-', color='gray', lw=0.5))
 
 # Barra de cor
 cbar = plt.colorbar(sc)

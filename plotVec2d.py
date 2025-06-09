@@ -1,7 +1,8 @@
 import matplotlib.pyplot as plt
+from adjustText import adjust_text
 
 # Caminho para o arquivo com os vetores
-filename = "vecs_dim2_S_V_T_bow.dat"
+filename = "vecs_dim2_Sto_V_toT.dat"
 
 # Listas para armazenar dados
 x = []
@@ -22,9 +23,12 @@ with open(filename, 'r') as f:
 plt.figure(figsize=(10, 6))
 plt.scatter(x, y, color='blue')
 
-# Adiciona os rótulos
+# Adiciona os rótulos com ajuste automático
+texts = []
 for i in range(len(labels)):
-    plt.text(x[i], y[i], labels[i], fontsize=9, ha='right', va='bottom')
+    texts.append(plt.text(x[i], y[i], labels[i], fontsize=9))
+
+adjust_text(texts, x=x, y=y, arrowprops=dict(arrowstyle='-', color='gray', lw=0.5))
 
 plt.title("Projeção de Vetores de Palavras")
 plt.xlabel("Dimensão 1")

@@ -4,7 +4,7 @@ from matplotlib.lines import Line2D
 import os
 
 # Caminho para o arquivo com os vetores
-filename = "vecs_dim2_Sto_V_toT.dat"
+filename = "vecs_dim2_S_toV_toT.dat"
 
 # Listas para armazenar dados
 x = []

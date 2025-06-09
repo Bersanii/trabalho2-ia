@@ -15,13 +15,13 @@ void run_experiment(int dim, int topology_type, double lr, int tmax) {
     string topology_name;
 
     switch (topology_type) {
-        case V_CENTRAL: // S <- V -> T (V é a resposta, S e T são o contexto) feito
-            topology_name = "S_V_T_bow";
+        case S_toVto_T: // S <- V -> T (V é a resposta, S e T são o contexto) feito
+            topology_name = "S_toVto_T";
             cout << "Carregando topologia: " << topology_name << endl;
             G.load(F);
             break;
         case Sto_Vto_T: // S -> V -> T (duas relações: P(V|S) e P(T|V)) feito
-            topology_name = "S_V_T_seq";
+            topology_name = "Sto_Vto_T";
             cout << "Carregando topologia: " << topology_name << endl;
             G.load_S_V_T(F);
             break;
@@ -31,7 +31,7 @@ void run_experiment(int dim, int topology_type, double lr, int tmax) {
             G.load_Sto_V_toT(F);
             break;
         case S_toV_toT: // S <- V <- T (duas relacoes P(V|S) e P(T|V))
-            topology_name = "V_ST";
+            topology_name = "S_toV_toT";
             cout << "Carregando topologia: " << topology_name << endl;
             G.load_S_V_T_rev(F);
             break;
@@ -45,7 +45,7 @@ void run_experiment(int dim, int topology_type, double lr, int tmax) {
 
     cout << "Iniciando treinamento para dim=" << dim << " topologia=" << topology_name << endl;
     switch (topology_type) {
-        case V_CENTRAL:
+        case S_toVto_T:
             trainBOW(&G, F, lr, tmax);
             break;
         case Sto_Vto_T:
@@ -81,7 +81,7 @@ int main() {
     int max_iterations = 500;
 
     for (int dim : dims) {
-        // Topologia 0: S <- V -> T (V_CENTRAL)
+        // Topologia 0: S <- V -> T (S_toVto_T)
         
         // Topologia 1: S -> V -> T (Sto_Vto_T)
     
@@ -90,7 +90,7 @@ int main() {
         // Topologia 3: S <- V <- T (S_toV_toT)
 
 
-        run_experiment(dim, Sto_V_toT, learning_rate, max_iterations);
+        run_experiment(dim, S_toV_toT, learning_rate, max_iterations);
     }
 
     return 0;

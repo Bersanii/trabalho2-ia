@@ -3,8 +3,8 @@
 #ifndef GRAFO_H
 #define GRAFO_H
 
-#define V_CENTRAL 0 // S <- V -> T (V é a resposta, S e T são o contexto)
-#define Sto_Vto_T 1 // // S -> V -> T (duas relações: P(S|V) e P(V|T))
+#define S_toVto_T 0 // S <- V -> T (V é a resposta, S e T são o contexto)
+#define Sto_Vto_T 1 // S -> V -> T (duas relações: P(S|V) e P(V|T))
 #define Sto_V_toT 2 // S -> V <- T (duas relacoes: P(S|V) e P(T|V))
 #define S_toV_toT 3 // S <- V <- T (duas relacoes P(V|S) e P(T|V))
 

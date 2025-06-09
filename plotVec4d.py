@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 from adjustText import adjust_text
 
 # Caminho para o novo arquivo com 4 dimensões + rótulo
-filename = "vecs_dim4_Sto_V_toT.dat"
+filename = "vecs_dim4_S_V_T_seq.dat"
 
 # Listas para armazenar dados
 x = []

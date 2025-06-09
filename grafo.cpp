@@ -61,12 +61,13 @@ void graph::load_S_V_T(ifstream& F){
         this->append(S);
         this->append(V);
         this->append(T);
-        // Conexão: S é contexto para V, V é contexto para T
+        // Conexão: V é contexto para S, T é contexto para V
         this->connect(S, V);
         this->connect(V, T);
     }
 }
 
+// S <- V <- T (duas relacoes P(V|S) e P(T|V))
 void graph::load_S_V_T_rev(ifstream& F){
     /*
         Carrega base de dados para o grafo com relação S <- V <- T
@@ -79,10 +80,45 @@ void graph::load_S_V_T_rev(ifstream& F){
         this->append(S);
         this->append(V);
         this->append(T);
-        // Conexão: V é contexto para S e para T
+        /*
+            Temos duas relacoes
+            V sendo a resposta, e S sendo o contexto
+            T sendo a resposta, e V sendo o contexto
+        
+        */
         this->connect(V, S);
-        this->connect(V, T);
+        this->connect(T, V);
     }
+}
+
+/*
+     S -> V <- T (duas relacoes: P(S|V) e P(T|V))
+
+
+*/
+void graph::load_Sto_V_toT(ifstream& F){
+    /*
+        Carrega base de dados para o grafo com relação S -> V <- T
+    */
+    while (!F.eof()){
+        string S, V, T;
+        getline(F, S, ' ');
+        getline(F, V, ' ');
+        getline(F, T);
+        this->append(S);
+        this->append(V);
+        this->append(T);
+        /*
+            Temos duas relacoes
+            S sendo a resposta, e V sendo o contexto
+            T sendo a resposta, e V sendo o contexto
+        
+        */
+        this->connect(S, V);
+        this->connect(T, V);
+    }
+
+
 }
 
 void graph::printNodes(){

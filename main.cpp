@@ -15,17 +15,22 @@ void run_experiment(int dim, int topology_type, double lr, int tmax) {
     string topology_name;
 
     switch (topology_type) {
-        case 0: // S <- V -> T (Original BOW)
+        case V_CENTRAL: // S <- V -> T (V é a resposta, S e T são o contexto) feito
             topology_name = "S_V_T_bow";
             cout << "Carregando topologia: " << topology_name << endl;
             G.load(F);
             break;
-        case 1: // S -> V -> T
+        case Sto_Vto_T: // S -> V -> T (duas relações: P(V|S) e P(T|V)) feito
             topology_name = "S_V_T_seq";
             cout << "Carregando topologia: " << topology_name << endl;
             G.load_S_V_T(F);
             break;
-        case 2: // S <- V <- T
+        case Sto_V_toT: // S -> V <- T (duas relacoes: P(S|V) e P(T|V))
+            topology_name = "Sto_V_toT";
+            cout << "Carregando topologia: " << topology_name << endl;
+            G.load_Sto_V_toT(F);
+            break;
+        case S_toV_toT: // S <- V <- T (duas relacoes P(V|S) e P(T|V))
             topology_name = "V_ST";
             cout << "Carregando topologia: " << topology_name << endl;
             G.load_S_V_T_rev(F);
@@ -40,13 +45,16 @@ void run_experiment(int dim, int topology_type, double lr, int tmax) {
 
     cout << "Iniciando treinamento para dim=" << dim << " topologia=" << topology_name << endl;
     switch (topology_type) {
-        case 0:
+        case V_CENTRAL:
             trainBOW(&G, F, lr, tmax);
             break;
-        case 1:
+        case Sto_Vto_T:
             train_S_V_T(&G, F, lr, tmax);
             break;
-        case 2:
+        case Sto_V_toT:
+            train_Sto_V_toT(&G, F, lr, tmax);
+            break;
+        case S_toV_toT:
             train_V_ST(&G, F, lr, tmax);
             break;
     }
@@ -73,14 +81,16 @@ int main() {
     int max_iterations = 200;
 
     for (int dim : dims) {
-        // Topologia 0: S <- V -> T (CBOW Original)
-        // run_experiment(dim, 0, learning_rate, max_iterations);
+        // Topologia 0: S <- V -> T (V_CENTRAL)
         
-        // Topologia 1: S -> V -> T
-        // run_experiment(dim, 1, learning_rate, max_iterations);
+        // Topologia 1: S -> V -> T (Sto_Vto_T)
+    
+        // Topologia 2: S -> V <- T (Sto_V_toT)
 
-        // Topologia 2: S <- V <- T
-        run_experiment(dim, 2, learning_rate, max_iterations);
+        // Topologia 3: S <- V <- T (S_toV_toT)
+
+
+        run_experiment(dim, V_CENTRAL, learning_rate, max_iterations);
     }
 
     return 0;

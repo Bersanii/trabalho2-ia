@@ -15,3 +15,6 @@ train.o: train.h
 
 clear:
 	rm -rf *.o main vecs*.dat
+
+grafico2d:
+	python3 plotVec2d.py

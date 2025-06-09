@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 
 # Caminho para o arquivo com os vetores
-filename = "vecs_dim2_V_ST.dat"
+filename = "vecs_dim2_Sto_V_toT.dat"
 
 # Listas para armazenar dados
 x = []

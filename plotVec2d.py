@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 from adjustText import adjust_text
 
 # Caminho para o arquivo com os vetores
-filename = "vecs_dim2_Sto_V_toT.dat"
+filename = "vecs_dim2_S_V_T_seq.dat"
 
 # Listas para armazenar dados
 x = []

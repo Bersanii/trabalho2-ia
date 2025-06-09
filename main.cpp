@@ -78,7 +78,7 @@ void run_experiment(int dim, int topology_type, double lr, int tmax) {
 int main() {
     int dims[] = {2, 4, 8};
     double learning_rate = 0.01;
-    int max_iterations = 200;
+    int max_iterations = 150;
 
     for (int dim : dims) {
         // Topologia 0: S <- V -> T (V_CENTRAL)
@@ -90,7 +90,7 @@ int main() {
         // Topologia 3: S <- V <- T (S_toV_toT)
 
 
-        run_experiment(dim, Sto_V_toT, learning_rate, max_iterations);
+        run_experiment(dim, Sto_Vto_T, learning_rate, max_iterations);
     }
 
     return 0;
